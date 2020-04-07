@@ -1,1 +1,2 @@
-# Covid_LA
+# Covid LA
+- Testing project hosting on GitHub
