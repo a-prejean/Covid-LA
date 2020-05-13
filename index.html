@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>COVID-19 in Louisiana</title>
+        <!-- <link rel="stylesheet" href="https://unpkg.com/tachyons/css/tachyons.min.css"> -->
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="https://unpkg.com/@primer/css/dist/primer.css" />
+
+
+        <style>
+        p.a {
+          white-space: nowrap;
+        }
+
+        p.b {
+          white-space: normal;
+        }
+
+        p.c {
+          white-space: pre;
+        }
+        </style>
+
+    </head>
+    <body>
+        <h1 id="covid-19-data-for-louisiana">COVID-19 Data for Louisiana</h1>
+
+        <div id="observablehq-e486bd41">
+          <div class="observablehq-display"></div>
+          <div class="observablehq-viewof-la_chart"></div>
+          <div class="observablehq-viewof-covid_chart1"></div>
+          <div class="observablehq-description"></div>
+        </div>
+
+        <script type="module">
+          import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
+          import define from "https://api.observablehq.com/@a-prejean/covid-19-data-for-louisiana.js?v=3";
+          (new Runtime).module(define, name => {
+            if (name === "display") return Inspector.into("#observablehq-e486bd41 .observablehq-display")();
+            if (name === "viewof la_chart") return Inspector.into("#observablehq-e486bd41 .observablehq-viewof-la_chart")();
+            if (name === "viewof covid_chart1") return Inspector.into("#observablehq-e486bd41 .observablehq-viewof-covid_chart1")();
+            if (name === "description") return Inspector.into("#observablehq-e486bd41 .observablehq-description")();
+          });
+        </script>
+
+
+        <hr />
+
+        <p><a href="https://observablehq.com/@a-prejean/covid-19-data-for-louisiana">Source</a></p>
+
+    </body>
+</html>
