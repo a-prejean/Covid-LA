@@ -10,44 +10,14 @@
     <body>
         <h1 id="covid-19-data-for-louisiana">COVID-19 Data for Louisiana</h1>
 
-        <div id="visual"></div>
+        <div id="observablehq-3bd8315c"></div>
 
         <script type="module">
-
-          // NOTEBOOK CONFIGURATION
-          import notebook from "https://api.observablehq.com/@a-prejean/covid-19-data-for-louisiana.js";
-
-          const target = document.querySelector("#visual");
-          const renders = {
-            //"viewof map_shows": "map_shows",
-            //"viewof date_selection": "date_selection",
-            //"viewof vega_map_embed": "vega_map_embed",
-            //"viewof vega_lite_chart": "vega_lite_chart",
-            "display": "div.fullwidth",
-          };
-
-
-          // BOILERPLATE
-          import {Inspector, Runtime} from "https://unpkg.com/@observablehq/notebook-runtime@2?module";
-          for (let i in renders) {
-            let s = renders[i], a = s.match(/^\w+/);
-            if (a) {
-              renders[i] = document.createElement(a[0]);
-              target.appendChild(renders[i]);
-              if (a = s.match(/\.(\w+)$/))
-                renders[i].className = a[1]; 
-            }
-            else
-              renders[i] = document.querySelector(renders[i]);
-          }
-          Runtime.load(notebook, (variable) => {
-            if (renders[variable.name]) {
-              return new Inspector(renders[variable.name]);
-            } else {
-              // return true; // uncomment to run hidden cells
-            }
-          });
-        </script>
+            import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
+            import define from "https://api.observablehq.com/@a-prejean/covid-19-data-for-louisiana.js?v=3";
+            const inspect = Inspector.into("#observablehq-3bd8315c");
+            (new Runtime).module(define, name => (name === "display") && inspect());
+        </script>    
 
         <style>
         /* https://css-tricks.com/full-width-containers-limited-width-parents/ */
