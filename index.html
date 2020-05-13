@@ -4,10 +4,64 @@
         <meta charset="utf-8">
         <title>COVID-19 in Louisiana</title>
         <script src="https://d3js.org/d3.v5.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/observable-jekyll/assets/main.css"><link type="application/atom+xml" rel="alternate" href="https://visionscarto.net/observable-jekyll/feed.xml" title="Observable Jekyll" />
     </head>
     <body>
-        <script type="text/javascript">
-            // Your beautiful D3 code will go here
+        <h1 id="tissots-indicatrix">Tissot’s indicatrix</h1>
+
+        <div id="visual"></div>
+
+        <script type="module">
+
+          // NOTEBOOK CONFIGURATION
+          import notebook from "https://api.observablehq.com/@fil/tissots-indicatrix.js";
+
+          const target = document.querySelector("#visual");
+          const renders = {
+            "viewof p": "p",
+            "display": "div.fullwidth",
+          };
+
+
+          // BOILERPLATE
+          import {Inspector, Runtime} from "https://unpkg.com/@observablehq/notebook-runtime@2?module";
+          for (let i in renders) {
+            let s = renders[i], a = s.match(/^\w+/);
+            if (a) {
+              renders[i] = document.createElement(a[0]);
+              target.appendChild(renders[i]);
+              if (a = s.match(/\.(\w+)$/))
+                renders[i].className = a[1]; 
+            }
+            else
+              renders[i] = document.querySelector(renders[i]);
+          }
+          Runtime.load(notebook, (variable) => {
+            if (renders[variable.name]) {
+              return new Inspector(renders[variable.name]);
+            } else {
+              // return true; // uncomment to run hidden cells
+            }
+          });
         </script>
+
+        <style>
+        /* https://css-tricks.com/full-width-containers-limited-width-parents/ */
+        .fullwidth {
+          width: 100vw;
+          position: relative;
+          left: 50%;
+          right: 50%;
+          margin-left: -50vw;
+          margin-right: -50vw;
+        }
+        #visual { min-height: 40vw }
+        </style>
+
+        <hr />
+
+        <p><a href="https://observablehq.com/@fil/tissots-indicatrix">Source</a></p>     
+        
     </body>
 </html>
