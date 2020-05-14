@@ -8,6 +8,13 @@ html * {
 	padding: 0;
 }
 
+html * {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, sans-serif;
+}
+
 
 
 .primary-1 { background-color: #6E91A1 }
@@ -18,29 +25,74 @@ html * {
 
 
 body {
-	font-family: "Segoe UI", "sans-serif";
-	font-size: 1vw;
+	margin-left: auto;
+	margin-right: auto;
+	font-size: 16px;
 	background: white;
 }
 
 /* Style the header */
 header {
-	position: fixed;
-	padding: 1em;
+	position: static;
+	font-size: 20px;
+	padding: 10px;
 	z-index: 1000;
 	top: 0px;
 	left: 0px;
 	width: 100%;
 	background-color: #ECF0F1;
-	color: #2C3E50;
-	font-size: 2.5em;
 }
 
 h1 {
-	color: black;
-	text-transform: none;
 	font-size: 2em;
+	text-transform: capitalize;
+	font-weight: 700;
+	margin: 0em;
 	letter-spacing: 0em;
+	color: #2C3E50;
+}
+.hero .hero_content h1 {
+}
+
+
+h2 {
+	font-size: 1.5em;
+	text-transform: none;
+	font-weight: 700;
+	margin: 0em;
+	letter-spacing: 0em;
+	color: #2C3E50;
+}
+
+h3 {
+	font-size: 1.5em;
+	text-transform: none;
+	font-weight: 700;
+	margin: 0em;
+	letter-spacing: 0em;
+	color: #2C3E50;
+}
+
+.site_header {
+	font-size: 2em;
+	color: #2C3E50;
+}
+
+.row:before, .row:after {
+	content: "";
+	display: table;
+}
+
+.row:after {
+	clear: both;
+}
+
+.hero {
+	background-size: cover;
+	padding: 2em;
+	color: #2C3E50;
+	background-color: #B46465;
+	text-align: center;
 }
 
 .map {}
@@ -52,18 +104,81 @@ h1 {
 .chart_large {}
 
 .some_text {
-	padding: 12em 6em;
+	padding: 10px;
+	color: #2C3E50;
 }
 
 .some_text p {
-	color: #2C3E50;
 	text-align: left;
 	text-transform: none;
-	font-size: 2.5em;
-	line-height: 1.8em;
-	letter-spacing: 0.325em;
+	font-size: 16px;
+/*	line-height: 1.8em;*/
+/*	letter-spacing: 0.325em;*/
+	color: #2C3E50;
+}
+
+
+.fullwidth {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+
+.col {
+	width: 100%;
+	float: left;
+	padding: 10px;
+}
+
+#observable_cell {
+	max-width: 100%;
+	height: auto;
+
 }
 
 
 
+
+
+
+/* Tablet View */
+@media (min-width:950px) {
+	
+	h1 {
+		font-size: 1.5em;
+		margin: 0em;
+	}
+	
+	.col-md-one-half {
+		width: 50%;
+	}
+	
+}
+
+
+
+/* Desktop View */
+@media (min-width: 1024px){
+	
+	body {
+		max-width: 1024px;
+	}
+	
+	.style-logo {
+		float: left;
+	}
+	
+	.style-nav {
+		float: right;
+	}
+	
+	.col-desktop {
+		width: 50%;
+	}
+	
+}
 

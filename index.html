@@ -1,8 +1,8 @@
 <!doctype html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<title>COVID-19 in Louisiana</title>
+<meta charset="utf-8">
+<title>COVID-19 in Louisiana</title>
 	
 	<!-- CSS Stylesheet -->
 	<link rel="stylesheet" href="styles.css">
@@ -13,14 +13,47 @@
 	
 	<!-- Header -->
 	<header>
-		COVID-19 Data for Louisiana
+		<div class="row">
+			<div class="col">
+				<a class="site_header">COVID-19 Data for Louisiana</a>
+			</div>
+		</div>
 	</header>
 	
 	
 	<!-- Main Content -->
 	<main>
-		
-	
+		<div class="row">
+			<div class="col">
+				<div class="some_text">
+					<div id="observable_cell">
+						<div class="observablehq-viewof-description"></div>
+					</div>			
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col col-md-one-half col-desktop">
+				<div id="observable_cell">
+					<div class="observablehq-viewof-vega_map_embed"></div>
+				</div>
+			</div>
+			<div class="col col-md-one-half col-desktop">
+				<div id="observable_cell">
+					<div class="observablehq-viewof-vega_lite_chart"></div>
+				</div>
+			</div>
+		</div>		
+		<div class="row">
+			<div class="col col-md-one-half col-desktop">
+				<div id="observable_cell">
+					<div class="observablehq-viewof-la_chart"></div>
+				</div>
+			</div>
+			<div class="col"></div>
+			<div class="col"></div>
+			<div class="col"></div>
+		</div>
 	</main>
 <!-- End Main Content -->
 	
@@ -29,4 +62,14 @@
 	
 
 </body>
+	<script type="module">
+	import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
+	import define from "https://api.observablehq.com/@a-prejean/covid-19-data-for-louisiana.js?v=3";
+	(new Runtime).module(define, name => {
+	if (name === "viewof description") return Inspector.into("#observable_cell .observablehq-viewof-description")();
+	if (name === "viewof vega_map_embed") return Inspector.into("#observable_cell .observablehq-viewof-vega_map_embed")();
+	if (name === "viewof vega_lite_chart") return Inspector.into("#observable_cell .observablehq-viewof-vega_lite_chart")();
+	if (name === "viewof la_chart") return Inspector.into("#observable_cell .observablehq-viewof-la_chart")();
+	});
+	</script>
 </html>
