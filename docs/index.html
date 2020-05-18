@@ -61,18 +61,18 @@ body {font-size:16px;}
   <p><b>Show Data by Parish for</b>:</p>
   <div id="map_shows"></div>
   <hr style="border:0px;height:1px">
-  <p>Click <b>'Play'</b> or drag the slider to select a specific date.</p>
-  <div id="date_selection"></div>
+<!--  <p>Click <b>'Play'</b> or drag the slider to select a specific date.</p>-->
+<!--  <div id="date_selection"></div>-->
 </div>
 
 <div class="w3-row-padding">
   <!-- Map -->
   <div class="w3-half w3-margin-bottom">
-  <div class="w3-padding-32" id="vega_map_embed"></div>
+  <div class="w3-padding-8" id="vega_map_embed"></div>
   </div>
   <!-- Chart -->
   <div class="w3-half">
-  <div class="w3-padding-16" id="vega_lite_chart"></div>
+  <div class="w3-padding-8" id="vega_lite_chart"></div>
   </div>
 </div>
 
@@ -131,7 +131,7 @@ import notebook from "https://api.observablehq.com/@a-prejean/covid-19-data-for-
 new Runtime().module(notebook, name => {
   if (name === "description") { return new Inspector(document.querySelector("#description")); }
   if (name === "viewof map_shows") { return new Inspector(document.querySelector("#map_shows")); }
-  if (name === "viewof date_selection") { return new Inspector(document.querySelector("#date_selection")); }
+//  if (name === "viewof date_selection") { return new Inspector(document.querySelector("#date_selection")); }
   if (name === "viewof description") { return new Inspector(document.querySelector("#description")); }
   if (name === "viewof vega_map_embed") { return new Inspector(document.querySelector("#vega_map_embed")); }
   if (name === "viewof vega_lite_chart") { return new Inspector(document.querySelector("#vega_lite_chart")); }
