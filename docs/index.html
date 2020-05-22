@@ -3,144 +3,172 @@
 <head>
 <meta charset="utf-8">
 <title>COVID-19 in Louisiana</title>
-	
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
-	
-<!-- CSS Stylesheet -->
-<link rel="stylesheet" href="style.css">
-	
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
-<style>
-body,h1,h2,h3,h4,h5,p {font-family: "Poppins", sans-serif}
-body {font-size:16px;}
-.w3-half img{margin-bottom:-6px;margin-top:16px;opacity:0.8;cursor:pointer}
-.w3-half img:hover{opacity:1}
-</style>
-	
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 </head>
 
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
+
+body, html {
+  height: 100%;
+  line-height: 1.8;
+}
+
+/* Colors */
+.w3-button:hover{color:#222831 !important;background-color:#ececec !important}
+.color-title {color:#757575 !important}
+.color-heading {color:#757575 !important}
+.color-text {color:#000 !important}
+.color-highlight {color:#fff !important; background-color:#30475e !important}
+.color-background {background-color:#222831 !important}
+.color-footer {color:#fff !important; background-color:#222831 !important}
+.color-menu {color:#fff !important; background-color:#222831 !important}
+.color-accent {color:#f2a365 !important}
+.color-border {border-color:#f2a365 !important}
+.color-light-gray {color:#ececec !important}
+</style>
+
 <body>
-	
-<!-- Sidebar/menu -->
-<nav class="w3-sidebar main_color w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
-  <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Close Menu</a>
-  <div class="w3-container">
-  <h3 class="w3-padding-16" style="font-size:32px;"><b>COVID-19<br>in Louisiana</b></h3>
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar w3-wide w3-padding w3-card color-menu" id="myNavbar">
+    <a href="#home" class="w3-bar-item w3-button w3-wide">COVID-19 in Louisiana</a>
+    <!-- Right-sided navbar links -->
+    <div class="w3-right w3-hide-small">
+      <a href="#map" class="w3-bar-item w3-button">MAP</a>
+      <a href="#chart" class="w3-bar-item w3-button">CHARTS</a>
+      <a href="#data" class="w3-bar-item w3-button">DATA</a>
+    </div>
+    <!-- Hide right-floated links on small screens and replace them with a menu icon -->
+
+    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">☰
+      <!-- <i class="fa fa-bars"></i> -->
+    </a>
   </div>
-  <div class="w3-bar-block">
-  <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Home</a> 
-  <a href="#map" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Parish Map</a> 
-  <a href="#charts" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Charts</a> 
-  <a href="#data_source" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Data Sources</a> 
-  </div>
+</div>
+
+<!-- Sidebar on small screens when clicking the menu icon -->
+<nav class="w3-sidebar w3-bar-block w3-card w3-animate-right w3-top w3-hide-medium w3-hide-large color-menu w3-large" style="z-index:3;width:100%;font-weight:bold;display:none;right:0;" id="mySidebar">
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-center w3-padding-16">CLOSE</a>
+  <a href="#map" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-16">MAP</a>
+  <a href="#chart" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-16">CHARTS</a>
+  <a href="#data" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-16">DATA</a>
 </nav>
 
-<!-- Top menu on small screens -->
-<header class="w3-container w3-top w3-hide-large main_color w3-xlarge w3-padding">
-  <a href="javascript:void(0)" class="w3-button main_color w3-margin-right" onclick="w3_open()">☰</a>
-  <span>COVID-19 in Louisiana</span>
+<!-- Header -->
+<header class="w3-display-container w3-content w3-wide" style="max-width:100%;" id="home">
+  <div class="w3-container w3-center" style="padding:150px 0px 0px 0px">
+    <h1 class="w3-xxlarge">
+    <span class="color-title">COVID-19 in</span>
+    <span class="w3-padding color-highlight"><b>Louisiana</b></span>
+    </h1>
+    <div id="description"></div>
+  </div>
 </header>
 
-<!-- Overlay effect when opening sidebar on small screens -->
-<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+<!-- Page content -->
+<div class="w3-content w3-padding" style="max-width:1200px">
 
-<!-- PAGE CONTENT! -->
-<div class="w3-main" style="margin-left:340px;margin-right:40px">
-
-<!-- Heading -->
-<div class="w3-container" style="margin-top:80px">
-<h1 class="w3-xxxxlarge text-dark"><b>COVID-19 Data by Parish</b></h1>
-<div id="description"></div>
-</div>
-
-<!-- Map / Chart -->
-<div class="w3-container" id="map" style="margin-top:40px">
-  <h1 class="w3-xxlarge text-dark"><b>Interactive Map</b></h1>
-  <hr class="w3-round">
-  <!--<p></p>-->
-  <p><b>Show Data by Parish for</b>:</p>
-  <div id="map_shows"></div>
-  <hr style="border:0px;height:1px">
-<!--  <p>Click <b>'Play'</b> or drag the slider to select a specific date.</p>-->
-<!--  <div id="date_selection"></div>-->
-</div>
-
-<div class="w3-row-padding">
-  <!-- Map -->
-  <div class="w3-half w3-margin-bottom">
-  <div class="w3-padding-8" id="vega_map_embed"></div>
-  </div>
-  <!-- Chart -->
-  <div class="w3-half">
-  <div class="w3-padding-8" id="vega_lite_chart"></div>
-  </div>
-</div>
-
-<!-- Charts -->
-<div class="w3-container" id="charts" style="margin-top:75px">
-  <h1 class="w3-xxlarge text-dark"><b>Charts</b></h1>
-  <hr class="w3-round">
-  <p>Daily totals of confirmed cases (Logarithmic Scale)<br><b>Hover or click to see parish data on date</b>.</p>
-  <div class="w3-row-padding">
-  <div class="w3-margin-bottom" id="la_chart"></div>
+  <!-- Map Section -->
+  <div class="w3-container w3-padding-32" id="map">
+    <h2 class="w3-border-bottom w3-padding-16 color-heading color-border">Interactive Map with Charts</h2>
+    <h4 class="color-heading">Show Data by Parish for:</h4>
+    <div id="map_shows"></div>
   </div>
 
-  <p>Daily totals<br><b>Hover or click to see parish data on date</b>.</p>
-  <div class="w3-row-padding">
-  <div id="covid_chart1"></div>
+  <div class="w3-row-padding w3-margin-bottom" style="text-align:center">
+    <div class="w3-col l6 m7">
+      <h5 class="color-heading">Click parish to see latest data.</h5>
+      <div id="vega_map_embed"></div>
+    </div>
+    <div class="w3-col l6 m7">
+      <h5 class="color-heading">Click to see parish data on date.</h5>
+      <div id="vega_lite_chart"></div>
+    </div>
+    <div class="w3-col">
+      <div id="covid_chart1"></div>
+    </div>
   </div>
-</div>
 
-<!-- Data Sources -->
-<div class="w3-container" id="data_source" style="margin-top:75px">
-  <h1 class="w3-xxlarge text-dark"><b>Data Sources</b></h1>
-  <hr class="w3-round">
-  <p class="w3-left">County-level data for coronavirus cases in the United States from The New York Times on <a href="https://github.com/nytimes/covid-19-data/blob/master/us-counties.csv" title="GITHUB" target="_blank" class="w3-hover-opacity">GitHub</a></p>
-	
-</div>
+  <!-- Chart Section -->
+  <div class="w3-container w3-padding-32" id="chart">
+    <h2 class="w3-border-bottom w3-padding-16 color-heading color-border">Charts</h2>
+    <h4 class="color-heading">Daily totals of confirmed cases (Logarithmic Scale)</h4>
+    <div id="map_shows"></div>
+  </div>
+
+  <div class="w3-row-padding w3-margin-bottom" style="text-align:center">
+    <div class="w3-col">
+      <h5 class="color-heading">Click to see parish data on date.</h5>
+      <div id="la_chart"></div>
+    </div>
+  </div>
+
+  <!-- Data Section -->
+  <div class="w3-container w3-padding-32" id="data">
+    <h2 class="w3-border-bottom w3-padding-16 color-heading color-border">Data Sources</h2>
+    <h4 class="color-heading">County-level data for coronavirus cases in the United States from The New York Times on <a href="https://github.com/nytimes/covid-19-data/blob/master/us-counties.csv" title="GITHUB" target="_blank" class="w3-hover-opacity">GitHub</a></h4>
+    <div id="map_shows"></div>
+  </div>
+
 
 <!-- End page content -->
 </div>
 
 <!-- Footer -->
-<div class="w3-light-grey w3-container w3-padding-32" style="margin-top:75px;padding-right:58px"><p class="w3-right">Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-opacity">w3.css</a> and <a href="https://observablehq.com" title="OBSERVABLE" target="_blank" class="w3-hover-opacity">Observable</a></p></div>
-
-<script>
-// Script to open and close sidebar
-function w3_open() {
-  document.getElementById("mySidebar").style.display = "block";
-  document.getElementById("myOverlay").style.display = "block";
-}
-
-function w3_close() {
-  document.getElementById("mySidebar").style.display = "none";
-  document.getElementById("myOverlay").style.display = "none";
-}
-
-</script>
+<footer class="w3-center w3-padding-16 color-footer">
+  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-opacity">w3.css</a> and <a href="https://observablehq.com" title="OBSERVABLE" target="_blank" class="w3-hover-opacity">Observable</a></p>
+</footer>
 
 <!-- Observable Imports -->
 <script type="module">
 // Load the Observable runtime and inspector.
 import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
 // Your notebook, compiled as an ES module.
-import notebook from "https://api.observablehq.com/@a-prejean/covid-19-data-for-louisiana.js?v=3";
+import notebook from "https://api.observablehq.com/@a-prejean/covid-19-data-louisiana.js?v=3";
 // Load the notebook, observing its cells with a default Inspector that simply renders the value of each cell into the provided DOM node.
-//new Runtime().module(notebook, Inspector.into(document.body));
+// new Runtime().module(notebook, Inspector.into(document.body));
 // Custom function to control which cells are rendered and where they go
-new Runtime().module(notebook, name => {
-  if (name === "description") { return new Inspector(document.querySelector("#description")); }
-  if (name === "viewof map_shows") { return new Inspector(document.querySelector("#map_shows")); }
-//  if (name === "viewof date_selection") { return new Inspector(document.querySelector("#date_selection")); }
-  if (name === "viewof description") { return new Inspector(document.querySelector("#description")); }
-  if (name === "viewof vega_map_embed") { return new Inspector(document.querySelector("#vega_map_embed")); }
-  if (name === "viewof vega_lite_chart") { return new Inspector(document.querySelector("#vega_lite_chart")); }
-  if (name === "viewof la_chart") { return new Inspector(document.querySelector("#la_chart")); }
-  if (name === "viewof covid_chart1") { return new Inspector(document.querySelector("#covid_chart1")); }
-});
+(new Runtime).module(notebook, name => {
+	if (name === "description") return Inspector.into("#description")();
+    if (name === "viewof map_shows") return Inspector.into("#map_shows")();
+    if (name === "viewof vega_map_embed") return Inspector.into("#vega_map_embed")();
+    if (name === "viewof vega_lite_chart") return Inspector.into("#vega_lite_chart")();
+    if (name === "viewof la_chart") return Inspector.into("#la_chart")();
+    if (name === "viewof covid_chart1") return Inspector.into("#covid_chart1")();
+  });
+// Or this
+// new Runtime().module(notebook, name => {
+//   if (name === "description") { return new Inspector(document.querySelector("#description")); }
+//   if (name === "viewof map_shows") { return new Inspector(document.querySelector("#map_shows")); }
+// });
+// Usage
+// EVERY cell script looks for MUST be called in DOM, ie <div id="vega_map_embed"></div>
 </script>
 
+<script>
+// Toggle between showing and hiding the sidebar when clicking the menu icon
+var mySidebar = document.getElementById("mySidebar");
+
+function w3_open() {
+  if (mySidebar.style.display === 'block') {
+    mySidebar.style.display = 'none';
+  } else {
+    mySidebar.style.display = 'block';
+  }
+}
+
+// Close the sidebar with the close button
+function w3_close() {
+    mySidebar.style.display = "none";
+}
+</script>
 
 </body>
-
 </html>
