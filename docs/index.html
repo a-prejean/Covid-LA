@@ -20,7 +20,34 @@
   <link rel="stylesheet" href="assets/theme/css/style.css">
   <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css"><link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
   
-  
+  <style>
+	/* Style the buttons from Observable */
+	#data_buttons input {
+		box-sizing: border-box;
+		font-family: 'Roboto', sans-serif;
+  		font-size: 1rem;
+  		font-display: swap;
+		color: #757575;
+		background: none;
+		font-style: normal;
+		font-weight: 500;
+		border-radius: 100px !important;
+		border: 2px solid;
+		border-color: #757575;
+		padding: 1rem 3rem;
+		margin: 0.4rem .8rem !important;
+/*		transition: all .5s;*/
+	}
+	#data_buttons input:hover,
+	#data_buttons input:focus,
+	#data_buttons input:active {
+		color: #ffffff;
+		background-color: #149dcc;
+		border-color: #149dcc;
+		cursor: pointer;
+    }
+	  
+  </style>
   
 </head>
 <body>
@@ -54,17 +81,13 @@
     </nav>
 </section>
 
-<section class="engine"><a href="https://mobirise.info/x">css templates</a></section><section class="header1 cid-s0pmN2zMip" id="header16-p">
+<section class="engine" id="home"><a href="https://mobirise.info/x">css templates</a></section><section class="header1 cid-s0pmN2zMip" id="header16-p">
 
-    
-
-    
-
-    <div class="container"  id="home">
+    <div class="container">
         <div class="row justify-content-md-center">
-            <div class="col-md-10 align-center">
+            <div class="col-md-10 align-center p-2">
                 <h1 class="mbr-section-title mbr-bold pb-3 mbr-fonts-style display-1">&nbsp;COVID-19 in Louisiana&nbsp;</h1>
-                <p class="mbr-text pb-3 mbr-fonts-style display-5" id="description"></p>
+                <p class="mbr-text mbr-fonts-style display-5" id="description"></p>
                 
             </div>
         </div>
@@ -72,66 +95,54 @@
 
 </section>
 
-<section class="services1 cid-s0pm7OJu0v" id="map">
-    <!---->
+<!--Map-->
+<section class="features14 cid-s0GqaehccY" id="map">
     
-    <!---->
-    <!--Overlay-->
-    
-    <!--Container-->
-    <div class="container">
-        <div class="row justify-content-center">
-            <!--Titles-->
-            <div class="title pb-5 col-12">
-                <h2 class="align-left pb-3 mbr-fonts-style display-2">Interactive Map with Charts</h2>
-                <h3 class="mbr-section-subtitle mbr-light mbr-fonts-style display-5">Show Data by Parish for:</h3>
-				<div id="map_shows"></div>
-            </div>
-            <!--Card-1-->
-            <div class="card col-12 col-md-6 p-3">
-                <div class="card-wrapper">
+    <div class="container align-center">
+        <h2 class="mbr-section-title pb-3 mbr-fonts-style display-2 align-left">Interactive Map with Charts</h2>
+        <h3 class="mbr-section-subtitle pb-2 mbr-fonts-style display-5 align-left">Show Data by Parish for:</h3>
+		<!--Buttons-->
+		<div class="pb-5" id="data_buttons"></div>
+
+		<!--Date Slider-->
+<!--		<div class="pb-5" id="date_selection"></div>-->
+        <div class="media-container-column">
+			<!--Columns-->
+            <div class="row justify-content-center">
+				<!--Card-->
+                <div class="card p-4 col-12 col-md-6">            
 					<div id="vega_map_embed"></div>
                 </div>
-            </div>
-            <!--Card-2-->
-            <div class="card col-12 col-md-6 p-3 last-child">
-                <div class="card-wrapper">
+				<!--Card-->
+                <div class="card p-4 col-12 col-md-6">
 					<div id="vega_lite_chart"></div>
                 </div>
             </div>
-            <!--Card-3-->
-            
-            <!--Card-4-->
-            
         </div>
     </div>
-</section>
-
-<section class="services1 cid-s0piF2lqbA" id="chart">
-    <!---->
+</section>	
+	
+<section class="features14 cid-s0GqaehccY" id="chart">
     
-    <!---->
-    <!--Overlay-->
-    
-    <!--Container-->
-    <div class="container">
-        <div class="row justify-content-center">
-            <!--Titles-->
-            <div class="title pb-5 col-12">
-                <h2 class="align-left pb-3 mbr-fonts-style display-2">Charts</h2>
-                <h3 class="mbr-section-subtitle mbr-light mbr-fonts-style display-5">Daily totals of confirmed cases (Logarithmic Scale)</h3>
-            </div>
-            <!--Card-1-->
-            <div class="card col-12 col-md-6 p-3 last-child">
-                <div class="card-wrapper">
-					<div id="la_chart"></div>
+    <div class="container align-center">
+        <h2 class="mbr-section-title pb-3 mbr-fonts-style display-2 align-left">Charts</h2>
+		<h3 class="mbr-section-subtitle pb-2 mbr-fonts-style display-5 align-left" id="chart_log_title"></h3>
+		<p class="mbr-text mbr-fonts-style display-5" id="selected_parish_text"></p>
+        <div class="media-container-column">
+			<!--Media-->
+            <div class="media-container-row image-row">
+                <div class="mbr-figure" style="width: 100%;">
+                    <div id="vl_chart"></div>
                 </div>
             </div>
-           
         </div>
     </div>
 </section>
 
+
+	
+	
+	
 <section class="services1 cid-s0pmcddyRu" id="data">
     <!---->
     
@@ -186,13 +197,17 @@ import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/run
 import notebook from "https://api.observablehq.com/@a-prejean/covid-19-data-for-louisiana.js?v=3";
 // Load the notebook, observing its cells with a default Inspector that simply renders the value of each cell into the provided DOM node.
 // new Runtime().module(notebook, Inspector.into(document.body));
-// Custom function to control which cells are rendered and where they go
+// Custom function to control which cells are rendered and where they go 
 (new Runtime).module(notebook, name => {
 	if (name === "description") return Inspector.into("#description")();
-    if (name === "viewof map_shows") return Inspector.into("#map_shows")();
+	if (name === "chart_log_title") return Inspector.into("#chart_log_title")();
+	if (name === "selected_parish_text") return Inspector.into("#selected_parish_text")();
+	if (name === "viewof data_buttons") return Inspector.into("#data_buttons")();
+//    if (name === "viewof map_shows") return Inspector.into("#map_shows")();
+//	if (name === "viewof date_selection") return Inspector.into("#date_selection")();
     if (name === "viewof vega_map_embed") return Inspector.into("#vega_map_embed")();
     if (name === "viewof vega_lite_chart") return Inspector.into("#vega_lite_chart")();
-    if (name === "viewof la_chart") return Inspector.into("#la_chart")();
+    if (name === "viewof vl_chart") return Inspector.into("#vl_chart")();
     // if (name === "viewof covid_chart1") return Inspector.into("#covid_chart1")();
   });
 // Or this
