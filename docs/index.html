@@ -20,33 +20,102 @@
   <link rel="stylesheet" href="assets/theme/css/style.css">
   <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css"><link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
   
-  <style>
-	/* Style the buttons from Observable */
-	#data_buttons input {
-		box-sizing: border-box;
-		font-family: 'Roboto', sans-serif;
+  <style>    
+    /* Style the buttons from Observable */
+    #data_buttons input {
+      box-sizing: border-box;
+		  font-family: 'Roboto', sans-serif;
   		font-size: 1rem;
   		font-display: swap;
-		color: #757575;
-		background: none;
-		font-style: normal;
-		font-weight: 500;
-		border-radius: 100px !important;
-		border: 2px solid;
-		border-color: #757575;
-		padding: 1rem 3rem;
-		margin: 0.4rem .8rem !important;
+      color: #757575;
+      background: none;
+      font-style: normal;
+      font-weight: 500;
+      border-radius: 100px !important;
+      border: 2px solid;
+      border-color: #757575;
+      padding: 1rem 3rem;
+      margin: 0.4rem .8rem !important;
 /*		transition: all .5s;*/
-	}
-	#data_buttons input:hover,
-	#data_buttons input:focus,
-	#data_buttons input:active {
-		color: #ffffff;
-		background-color: #149dcc;
-		border-color: #149dcc;
-		cursor: pointer;
+  	}
+    #data_buttons input:hover,
+    #data_buttons input:focus,
+    #data_buttons input:active {
+      color: #ffffff;
+      background-color: #149dcc;
+      border-color: #149dcc;
+      cursor: pointer;
     }
 	  
+  /* Customize Radio Buttons */
+  /* Customize the label (the container) */
+  .radio_container {
+    display: inline-block;
+    position: relative;
+    padding-left: 36px;
+    margin-right: 24px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 0.9em;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  /* Hide the browser's default radio button */
+  .radio_container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+
+  /* Create a custom radio button */
+  .radio_checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #dae1e7;
+    border-radius: 50%;
+  }
+
+  /* On mouse-over, add a grey background color */
+  .radio_container:hover input ~ .radio_checkmark {
+    background-color: #c1cdd7;
+  }
+
+  /* When the radio button is checked, add a blue background */
+  .radio_container input:checked ~ .radio_checkmark {
+    background-color: #149dcc;
+  }
+
+  /* Create the indicator (the dot/circle - hidden when not checked) */
+  .radio_checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+
+  /* Show the indicator (dot/circle) when checked */
+  .radio_container input:checked ~ .radio_checkmark:after {
+    display: block;
+  }
+
+  /* Style the indicator (dot/circle) */
+  .radio_container .radio_checkmark:after {
+    top: 9px;
+    left: 9px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ffffff;
+  }
+
+    
   </style>
   
 </head>
@@ -102,7 +171,8 @@
         <h2 class="mbr-section-title pb-3 mbr-fonts-style display-2 align-left">Interactive Map with Charts</h2>
         <h3 class="mbr-section-subtitle pb-2 mbr-fonts-style display-5 align-left">Show Data by Parish for:</h3>
 		<!--Buttons-->
-		<div class="pb-5" id="data_buttons"></div>
+<!--		<div class="pb-5" id="data_buttons"></div>-->
+    <div class="pb-5" id="map_shows"></div>
 
 		<!--Date Slider-->
 <!--		<div class="pb-5" id="date_selection"></div>-->
@@ -111,11 +181,12 @@
             <div class="row justify-content-center">
 				<!--Card-->
                 <div class="card p-4 col-12 col-md-6">            
-					<div id="vega_map_embed"></div>
+					        <div class="pt-4" id="vega_map_embed"></div>
                 </div>
 				<!--Card-->
                 <div class="card p-4 col-12 col-md-6">
-					<div id="vega_lite_chart"></div>
+                  <p class="mbr-text pb-0 mbr-fonts-style display-6 align-center" id="chart_title"></p>
+				        	<div id="vega_lite_chart"></div>
                 </div>
             </div>
         </div>
@@ -202,13 +273,14 @@ import notebook from "https://api.observablehq.com/@a-prejean/covid-19-data-for-
 	if (name === "description") return Inspector.into("#description")();
 	if (name === "chart_log_title") return Inspector.into("#chart_log_title")();
 	if (name === "selected_parish_text") return Inspector.into("#selected_parish_text")();
-	if (name === "viewof data_buttons") return Inspector.into("#data_buttons")();
-//    if (name === "viewof map_shows") return Inspector.into("#map_shows")();
-//	if (name === "viewof date_selection") return Inspector.into("#date_selection")();
-    if (name === "viewof vega_map_embed") return Inspector.into("#vega_map_embed")();
-    if (name === "viewof vega_lite_chart") return Inspector.into("#vega_lite_chart")();
-    if (name === "viewof vl_chart") return Inspector.into("#vl_chart")();
-    // if (name === "viewof covid_chart1") return Inspector.into("#covid_chart1")();
+//	if (name === "viewof data_buttons") return Inspector.into("#data_buttons")();
+  if (name === "viewof map_shows") return Inspector.into("#map_shows")();
+  //	if (name === "viewof date_selection") return Inspector.into("#date_selection")();
+  if (name === "viewof vega_map_embed") return Inspector.into("#vega_map_embed")();
+  if (name === "chart_title") return Inspector.into("#chart_title")();
+  if (name === "viewof vega_lite_chart") return Inspector.into("#vega_lite_chart")();
+  if (name === "viewof vl_chart") return Inspector.into("#vl_chart")();
+  // if (name === "viewof covid_chart1") return Inspector.into("#covid_chart1")();
   });
 // Or this
 // new Runtime().module(notebook, name => {
