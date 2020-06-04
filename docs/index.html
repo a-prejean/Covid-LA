@@ -115,7 +115,29 @@
     background: #ffffff;
   }
 
-    
+  /* Custom Button */
+  .my_button {
+    background-color:#00a7cc;
+    -webkit-border-radius:42px;
+    -moz-border-radius:42px;
+    border-radius:42px;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+/*    font-family:Verdana;*/
+    font-size:16px;
+    padding:16px 16px;
+    text-decoration:none;
+  }
+  .my_button:hover {
+    color:#ffffff;
+    background-color:#007991;
+  }
+  .my_button:active {
+    position:relative;
+    top:1px;
+  }
+
   </style>
   
 </head>
@@ -173,6 +195,7 @@
 		<!--Buttons-->
 <!--		<div class="pb-5" id="data_buttons"></div>-->
     <div class="pb-5" id="map_shows"></div>
+<!--      <a href="#cases-per-parish" class="my_button">Button</a>-->
 
 		<!--Date Slider-->
 <!--		<div class="pb-5" id="date_selection"></div>-->
@@ -204,9 +227,22 @@
             <div class="media-container-row image-row">
                 <div class="mbr-figure" style="width: 100%;">
                     <div id="vl_chart"></div>
-                </div>
+                </div>              
             </div>
-        </div>
+          
+            <div class="media-container-row image-row">
+                <div class="mbr-figure">
+                    <div id="vl_selected_parish_chart"></div>
+                </div>              
+            </div>
+        
+            <div class="media-container-row image-row">
+                <div class="mbr-figure">
+                    <div id="vl_parish_charts"></div>
+                </div>              
+            </div>
+      
+      </div>
     </div>
 </section>
 
@@ -280,6 +316,8 @@ import notebook from "https://api.observablehq.com/@a-prejean/covid-19-data-for-
   if (name === "chart_title") return Inspector.into("#chart_title")();
   if (name === "viewof vega_lite_chart") return Inspector.into("#vega_lite_chart")();
   if (name === "viewof vl_chart") return Inspector.into("#vl_chart")();
+  if (name === "viewof vl_selected_parish_chart") return Inspector.into("#vl_selected_parish_chart")();
+  if (name === "viewof vl_parish_charts") return Inspector.into("#vl_parish_charts")();
   // if (name === "viewof covid_chart1") return Inspector.into("#covid_chart1")();
   });
 // Or this
